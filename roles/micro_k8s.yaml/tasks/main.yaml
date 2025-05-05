@@ -1,4 +1,8 @@
 ---
 
 - name: Update Repos
-  
+  ansible.builtin.apt:
+    name: "*"
+    update_cache: true
+
+

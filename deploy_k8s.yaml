@@ -5,5 +5,5 @@
   become: true
   roles:
 
-    name: Deploy MicroK8s
-    role: micro_k8s.yaml
+    - name: Deploy MicroK8s
+      role: micro_k8s.yaml
