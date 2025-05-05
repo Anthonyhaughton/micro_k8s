@@ -1,0 +1,13 @@
+---
+
+- name: Deploy Netplan bridge config
+  ansible.builtin.template:
+    src: netplan_bridge.yaml.j2
+    dest: /etc/netplan/01-bridge.yaml
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Apply Netplan config
+  ansible.builtin.command: netplan apply
+  notify: Reboot to apply bridge (optional)

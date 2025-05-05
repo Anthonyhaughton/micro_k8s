@@ -1,0 +1,5 @@
+# handlers/main.yaml
+- name: Reboot to apply bridge (optional)
+  ansible.builtin.reboot:
+    msg: "Rebooting to apply new bridge networking config"
+    reboot_timeout: 300

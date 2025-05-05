@@ -1,0 +1,9 @@
+---
+
+- name: Install OKD
+  hosts: lab
+  become: true
+  roles:
+
+    - name: Install OKD
+      role: okd_deploy

@@ -1,0 +1,53 @@
+---
+
+- name: Update packages
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install KVM and virtualization tools
+  ansible.builtin.apt:
+    name:
+      - qemu-kvm
+      - libvirt-daemon-system
+      - libvirt-clients
+      - bridge-utils
+      - virtinst
+      - virt-manager
+      - dnsmasq-base
+    state: present
+
+- name: Ensure user is in libvirt and kvm groups
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: libvirt,kvm
+    append: true
+  register: group_membership_change
+
+- name: Reboot the host
+  ansible.builtin.reboot:
+    msg: "Rebooting to apply group membership changes"
+    reboot_timeout: 600
+  when: group_membership_change is changed
+
+- name: Block to verify Virtualization Support
+  block:
+
+    - name: Check for virtualization support
+      ansible.builtin.shell: egrep -c '(vmx|svm)' /proc/cpuinfo
+      register: virt_support
+      changed_when: false
+
+    - name: Fail if virtualization is not supported
+      ansible.builtin.fail:
+        msg: "Virtualization is not supported or not enabled in BIOS!"
+      when: virt_support.stdout | int < 1
+
+- name: Verify KVM kernel modules are loaded
+  ansible.builtin.shell: lsmod | grep kvm
+  register: kvm_modules
+  changed_when: false
+
+- name: Show loaded KVM modules
+  ansible.builtin.debug:
+    var: kvm_modules.stdout
+

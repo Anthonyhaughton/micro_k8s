@@ -1,0 +1,25 @@
+network:
+  version: 2
+  renderer: networkd
+
+  ethernets:
+    {{ interface_name }}:
+      dhcp4: no
+      addresses: []
+      routes: []
+      dhcp4-overrides:
+        use-routes: false
+      dhcp6: no
+
+  bridges:
+    br0:
+      interfaces: [{{ interface_name }}]
+      addresses: [{{ static_ip }}/{{ netmask }}]
+      routes:
+        - to: 0.0.0.0/0
+          via: {{ gateway }}
+      nameservers:
+        addresses: {{ dns_servers }}
+      parameters:
+        stp: false
+        forward-delay: 0

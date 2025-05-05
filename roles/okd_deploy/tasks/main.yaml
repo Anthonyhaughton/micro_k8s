@@ -1,0 +1,9 @@
+---
+
+- name: Include KVM install tasks
+  ansible.builtin.import_tasks: install_kvm.yaml
+  tags: kvm
+
+- name: Include Networking tasks
+  ansible.builtin.import_tasks: networking.yaml
+  tags: network
