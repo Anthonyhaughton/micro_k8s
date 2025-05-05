@@ -1,0 +1,6 @@
+---
+
+- name: Install Helm via Snap
+  ansible.builtin.command: snap install helm --classic
+  args:
+    creates: /snap/bin/helm

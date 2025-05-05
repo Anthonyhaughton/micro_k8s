@@ -1,0 +1,6 @@
+---
+# Use defult config file to auth into cluster until SA is created
+
+- name: Use temp kubeconfig for role
+  ansible.builtin.shell:
+    microk8s config > /home/svc_ansible/kubeconfig

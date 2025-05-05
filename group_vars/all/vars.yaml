@@ -1,0 +1,4 @@
+---
+
+# First run the bootstrap_homelab playbook to create the venv then uncomment this var
+ansible_python_interpreter: /opt/ansible_venv/bin/python

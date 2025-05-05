@@ -1,0 +1,12 @@
+---
+
+- name: Install Packages
+  ansible.builtin.import_tasks: install_packages.yaml
+  tags: packages
+
+- name: Prepare server
+  ansible.builtin.import_tasks: prepare_server.yaml
+
+- name: Create SA for Cluster
+  ansible.builtin.import_tasks: service_account.yaml
+
