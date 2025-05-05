@@ -1,0 +1,2 @@
+chart_version: v1.17.2
+chart_ref: jetstack/cert-manager

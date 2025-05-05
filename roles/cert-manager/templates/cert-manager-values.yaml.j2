@@ -1,0 +1,27 @@
+crds:
+  enabled: true
+  keep: true
+
+image:
+  repository: quay.io/jetstack/cert-manager-controller
+  pullPolicy: IfNotPresent
+
+webhook:
+  image:
+    repository: quay.io/jetstack/cert-manager-webhook
+    pullPolicy: IfNotPresent
+
+cainjector:
+  image:
+    repository: quay.io/jetstack/cert-manager-cainjector
+    pullPolicy: IfNotPresent
+
+acmesolver:
+  image:
+    repository: quay.io/jetstack/cert-manager-acmesolver
+    pullPolicy: IfNotPresent
+
+startupapicheck:
+  image:
+    repository: quay.io/jetstack/cert-manager-startupapicheck
+    pullPolicy: IfNotPresent

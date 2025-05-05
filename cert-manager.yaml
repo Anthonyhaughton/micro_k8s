@@ -1,8 +1,8 @@
 ---
 
 - name: Install cert-manager on MicroK8s
-  hosts: lab
-  become: true
+  hosts: cert-manager
+  gather_facts: false
   roles:
 
     - name: Deploy cert-manager

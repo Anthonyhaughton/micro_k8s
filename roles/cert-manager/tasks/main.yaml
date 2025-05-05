@@ -1,2 +1,4 @@
 ---
 
+- name: Deploy cert-manager
+  ansible.builtin.import_tasks: cert-manager.yaml
