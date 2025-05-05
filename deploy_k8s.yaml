@@ -1,0 +1,9 @@
+---
+
+- name: Install and Configure MicroK8s on Sever
+  hosts: lab
+  become: true
+  roles:
+
+    name: Deploy MicroK8s
+    role: micro_k8s.yaml
